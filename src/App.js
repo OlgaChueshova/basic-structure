@@ -1,5 +1,5 @@
 import { Component } from './core'
-import './components/molecules/InputGroup'
+import './components/molecules/InputGroup/InputGroup.js'
 
 export class App extends Component {
 

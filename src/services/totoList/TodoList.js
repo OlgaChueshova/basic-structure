@@ -10,4 +10,4 @@ export class TodoList {
     }
 }
 
-export const TodoList = new TodoList();
+export const todoList = new TodoList();

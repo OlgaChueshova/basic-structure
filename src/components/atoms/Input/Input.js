@@ -1,4 +1,5 @@
 import { Component } from "../../../core";
+import { debounce } from "../../../utils/debounce.js";
 
 export class Input extends Component {
 
@@ -7,14 +8,27 @@ export class Input extends Component {
         this.state = {
             value: "",
         }
+
+        this.onInput = this.onInput.bind(this);
     }
 
-    onChange() {
+    onInput(evt) {
 
+        this.dispatch('custom-input', {value: evt.target.value})
+        // this.setState((state), () => {
+        //     return {
+        //         ...this.state,
+        //         value: evt.target.value
+        //     }
+        // })
+    }
+
+    static get observedAttributes() {
+        return ['type', 'value', 'placeholder'];
     }
 
     componentDidMount() {
-        this.addEventListener('input', onChange)
+        this.addEventListener('input', debounce(this.onInput, 300))
     }
 
     componentWillUpdate(name, oldValue, newValue) {
